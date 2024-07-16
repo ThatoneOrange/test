@@ -1,7 +1,5 @@
 local autofarm = {}
 
-local min, max = 10, 15
-
 function autofarm.serverhop()
     local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 if queueonteleport then
@@ -14,7 +12,7 @@ if httprequest then
     local body = game:GetService("HttpService"):JSONDecode(req.Body)
     if body and body.data then
         for i, v in next, body.data do
-            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= min and v.playing <= max and v.id ~= game.JobId then
+            if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= _G.MinPlayers and v.id ~= game.JobId then
                 table.insert(servers, 1, v.id)
             end 
         end
@@ -25,7 +23,7 @@ if httprequest then
     else
         if body and body.data then
             for i, v in next, body.data do
-                if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= min and v.playing <= max and v.id ~= game.JobId then
+                if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= _G.MinPlayers and v.id ~= game.JobId then
                     table.insert(servers, 1, v.id)
                 end 
             end
