@@ -1,9 +1,5 @@
 local autofarm = {}
 
-repeat
-    wait()
-until game:IsLoaded()
-
 local min, max = 10, 15
 
 function autofarm.serverhop()
