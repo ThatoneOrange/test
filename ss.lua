@@ -39,12 +39,14 @@ end
 
 end
 
+
 local BankInteractions = game:GetService("Workspace"):WaitForChild('BankInteractions')
 local Plant = workspace:WaitForChild('Plant')
 local C4prompt = Plant:WaitForChild('ProximityPrompt')
-local Robbery = game:GetService("ReplicatedStorage"):WaitForChild('BankRobbery')
-local Cooldown = game:GetService("ReplicatedStorage"):WaitForChild('BankCooldown')
-local ATM = game:GetService('ReplicatedStorage'):WaitForChild('ATM')
+local Storage = game:GetService('ReplicatedStorage')
+local Robbery = Storage:WaitForChild('BankRobbery')
+local Cooldown = Storage:WaitForChild('BankCooldown')
+local ATM = Storage:WaitForChild('ATM')
 local Player = game:GetService('Players').LocalPlayer
 local Char = Player.Character
 local humanoidrootpart = Char:WaitForChild('HumanoidRootPart')
@@ -64,7 +66,7 @@ if not Player.Backpack:FindFirstChild('C4') then
             [1] = "C4",
             [2] = 2000
         }
-        game:GetService("ReplicatedStorage").Buy:FireServer(unpack(args))
+        Storage.Buy:FireServer(unpack(args))
     else
         if Bank.Value >= 2000 then
             ATM:FireServer('Withdraw', 2000)
@@ -72,7 +74,7 @@ if not Player.Backpack:FindFirstChild('C4') then
                 [1] = "C4",
                 [2] = 2000
             } 
-            game:GetService("ReplicatedStorage").Buy:FireServer(unpack(args))
+            Storage.Buy:FireServer(unpack(args))
         else
             Player:Kick('You need atleast 2k to start farming lol')
             return
@@ -91,7 +93,7 @@ if C4 then
     Humanoid:EquipTool(C4)
     C4prompt.HoldDuration = -1
     fireproximityprompt(C4prompt, 1)
-    game:GetService('ReplicatedStorage').C4:FireServer(game.Players.LocalPlayer.Character.C4, 'COMPLETED', workspace.Plant)
+    Storage.C4:FireServer(game.Players.LocalPlayer.Character.C4, 'COMPLETED', workspace.Plant)
     repeat
         wait()
         print('waiting for vault..')
