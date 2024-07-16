@@ -5,7 +5,7 @@ local min, max = 10, 15
 function autofarm.serverhop()
     local queueonteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 if queueonteleport then
-    queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()")
+    queueonteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/ThatoneOrange/test/main/ss.lua'))()")
 end
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 if httprequest then
